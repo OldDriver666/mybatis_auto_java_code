@@ -7,6 +7,7 @@ import com.zzg.mybatis.generator.model.UITableColumnVO;
 import com.zzg.mybatis.generator.util.ConfigHelper;
 import com.zzg.mybatis.generator.util.DbUtil;
 import com.zzg.mybatis.generator.util.MyStringUtils;
+import com.zzg.mybatis.generator.util.ReduceCode;
 import com.zzg.mybatis.generator.view.AlertUtil;
 import com.zzg.mybatis.generator.view.UIProgressCallback;
 import javafx.collections.FXCollections;
@@ -280,7 +281,12 @@ public class MainUIController extends BaseFXController {
 		bridge.setProgressCallback(alert);
 		alert.show();
 		try {
+			//生成代码文件
             bridge.generate();
+            //简化代码文件
+            String path = generatorConfig.getProjectFolder();
+            String domain = generatorConfig.getDomainObjectName();
+            ReduceCode.recursiveFiles(path, domain);
         } catch (Exception e) {
 			e.printStackTrace();
             AlertUtil.showErrorAlert(e.getMessage());
