@@ -78,7 +78,7 @@ public class ReduceCode {
 				bs.append("import lombok.Getter;\rimport lombok.Setter;\rimport lombok.ToString;\r\r");
 				continue;
 			}
-			if (str.indexOf("private Integer id;") != -1) {
+			if (str.indexOf("private Integer id;") != -1 || str.indexOf("private Long id;") != -1) {
 				bs.append("    @Id\r");
 			    bs.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\r");
 			    bs.append(str);
