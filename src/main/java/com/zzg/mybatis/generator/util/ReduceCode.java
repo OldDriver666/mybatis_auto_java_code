@@ -14,7 +14,7 @@ import java.io.FileWriter;
  */
 public class ReduceCode {
 	public static void main(String[] args) throws Exception {
-		String path = "D:/codeTest";
+		String path = "E:/ruixun-master/ruixun-opensip-api/src/main/java/com/vanrui/reqvo/";
 		String domain = "";
 		recursiveFiles(path, domain);
 	}
@@ -86,7 +86,7 @@ public class ReduceCode {
 				continue;
 			}
 			if (str.indexOf("public class") != -1) {
-				bs.append("@Getter\r@Setter\r@ToString\r");
+				bs.append("@Data\r");
 			}
 			if (str.indexOf("public") != -1 && str.indexOf("class") == -1) {
 				break;

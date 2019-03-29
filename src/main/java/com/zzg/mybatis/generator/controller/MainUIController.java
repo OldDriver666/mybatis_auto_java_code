@@ -287,6 +287,9 @@ public class MainUIController extends BaseFXController {
             String path = generatorConfig.getProjectFolder();
             String domain = generatorConfig.getDomainObjectName();
             ReduceCode.recursiveFiles(path, domain);
+            
+            //生成service,controller文件
+            
         } catch (Exception e) {
 			e.printStackTrace();
             AlertUtil.showErrorAlert(e.getMessage());
