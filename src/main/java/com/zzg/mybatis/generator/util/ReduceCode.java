@@ -1,5 +1,7 @@
 package com.zzg.mybatis.generator.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -65,6 +67,7 @@ public class ReduceCode {
 		StringBuffer bs = new StringBuffer();
 		String str = null;
 		FileReader fr = new FileReader(path);
+		String comment = "";
 		BufferedReader br = new BufferedReader(fr);
 
 		while ((str = br.readLine()) != null) {
@@ -75,22 +78,41 @@ public class ReduceCode {
 				bs.append("import javax.persistence.GeneratedValue;\r");
 				bs.append("import javax.persistence.GenerationType;\r");
 				bs.append("import javax.persistence.Id;\r");
-				bs.append("import lombok.Getter;\rimport lombok.Setter;\rimport lombok.ToString;\r\r");
+				bs.append("import lombok.Data;\r\r");
+				bs.append("import io.swagger.annotations.ApiModel;\r");
+				bs.append("import io.swagger.annotations.ApiParam;\r");
 				continue;
 			}
-			if (str.indexOf("private Integer id;") != -1 || str.indexOf("private Long id;") != -1) {
-				bs.append("    @Id\r");
-			    bs.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\r");
-			    bs.append(str);
-				bs.append("\r");
-				continue;
+
+
+			if (str.indexOf("*") != -1 && str.indexOf("/**") == -1 && str.indexOf("*/") == -1) {
+				comment = str.substring(str.indexOf("*") +1 ).trim();
 			}
+			if (str.indexOf("private") != -1 && StringUtils.isNotEmpty(comment)) {
+				if (str.indexOf("private Integer id;") != -1 || str.indexOf("private Long id;") != -1) {
+					bs.append("    @Id\r");
+					bs.append("    @GeneratedValue(strategy = GenerationType.IDENTITY)\r");
+				}
+				bs.append("    @ApiParam(value=\"").append(comment).append("\")\r");
+				comment="";
+				bs.append(str);
+				continue;
+
+			}
+
 			if (str.indexOf("public class") != -1) {
 				bs.append("@Data\r");
+				bs.append("@ApiModel\r");
 			}
 			if (str.indexOf("public") != -1 && str.indexOf("class") == -1) {
 				break;
 			}
+
+			if (str.indexOf("ApiModel") != -1) {
+				path="D:/111.java";
+				break;
+			}
+
 			bs.append(str);
 			bs.append("\r");
 		}
