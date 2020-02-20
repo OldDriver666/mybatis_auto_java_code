@@ -206,19 +206,19 @@
                                     </HBox>
                                     <HBox>
                                        <children>
-                                          <CheckBox fx:id="needToStringHashcodeEquals" mnemonicParsing="false" selected="true" text="生成toString/hashCode/equals方法" />
-                                           <CheckBox fx:id="useSchemaPrefix" mnemonicParsing="false" selected="true" text="使用Schema前缀" />
+                                          <CheckBox fx:id="needToStringHashcodeEquals" mnemonicParsing="false" selected="false" text="生成toString/hashCode/equals方法" />
+                                           <CheckBox fx:id="useSchemaPrefix" mnemonicParsing="false" selected="false" text="使用Schema前缀" />
                                        </children>
                                     </HBox>
                                      <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
                                          <children>
                                              <CheckBox fx:id="forUpdateCheckBox" mnemonicParsing="false" selected="false" text="select 增加ForUpdate" />
-                                             <CheckBox fx:id="annotationDAOCheckBox" mnemonicParsing="false" selected="true" text="DAO使用 @Repository 注解" />
+                                             <CheckBox fx:id="annotationDAOCheckBox" mnemonicParsing="false" selected="false" text="DAO使用 @Repository 注解" />
                                          </children>
                                      </HBox>
                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                          <children>
-                                             <CheckBox fx:id="useDAOExtendStyle" mnemonicParsing="false" selected="true" text="DAO方法抽出到公共父接口" />
+                                             <CheckBox fx:id="useDAOExtendStyle" mnemonicParsing="false" selected="false" text="DAO方法抽出到公共父接口" />
                                              <CheckBox fx:id="jsr310Support" mnemonicParsing="false" prefHeight="16.0" prefWidth="252.0" text="JSR310: Date and Time API" />
                                          </children>
                                      </HBox>
